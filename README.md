@@ -1,4 +1,4 @@
-# Arbitrage Detector
+# Currency Arbitrage Finder
 
 This C++ program identifies arbitrage opportunities in foreign exchange markets by detecting negative-weight cycles in a graph. It uses the Bellman-Ford algorithm to find a sequence of currency trades that can result in a risk-free profit.
 
