@@ -11,17 +11,17 @@ This problem can be modeled using a directed graph where:
 * **Edges** represent exchange rates between currencies.
 
 An arbitrage opportunity exists if the product of the exchange rates in a cycle is greater than 1.
-$$
+$
 rate_1 \times rate_2 \times \dots \times rate_k > 1
-$$
+$
 To make this problem solvable with standard graph algorithms, we can take the logarithm of this inequality. By using the property $log(a \times b) = log(a) + log(b)$, the condition becomes:
-$$
+$
 log(rate_1) + log(rate_2) + \dots + log(rate_k) > 0
-$$
+$
 If we then define the weight of each edge as $w = -log(rate)$, the condition for arbitrage transforms into finding a cycle with a negative total weight:
-$$
+$
 -w_1 - w_2 - \dots - w_k > 0 \implies w_1 + w_2 + \dots + w_k < 0
-$$
+$
 This is a classic **negative-weight cycle detection problem**, for which the Bellman-Ford algorithm is perfectly suited.
 
 ## Algorithm
