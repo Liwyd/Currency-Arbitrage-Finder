@@ -89,3 +89,48 @@ The product of these rates is $1.1 \times 0.9 \times 1.02 = 1.0098$, which is gr
 1 2 3
 
 This output shows a 3-step cycle involving currencies 1 (USD), 2 (EUR), and 3 (JPY).
+
+
+------
+# Rust Version Notes
+
+This repository also includes a Rust implementation of the same arbitrage detection algorithm, which follows the exact same logic as the original C++ version.
+
+### Differences in Rust Implementation:
+- Uses `usize` indices internally (0-based), so input indices should be 0-based or adjusted accordingly.
+- Reads the entire input at once and parses it efficiently using string splitting.
+- Uses Rust’s standard library (`std::f64::INFINITY`, `f64::ln()`) for numeric operations.
+- Prints the final result as either:
+  - `"Arbitrage opportunity detected"` if a negative cycle is found,
+  - or `"No arbitrage opportunity"` otherwise.
+
+### How to Compile and Run the Rust Code
+
+1. Compile with:
+    ```bash
+    rustc arbitrage_detector.rs -O
+    ```
+
+2. Run the executable, providing input in the same format (first line `n m`, then `m` lines of `u v rate`):
+    ```bash
+    ./arbitrage_detector < input.txt
+    ```
+
+### Input 
+
+- The Rust version expects:
+  - First line: two integers `n` and `m`.
+  - Next `m` lines: each line contains three values:
+    - `u` (starting currency index, zero-based),
+    - `v` (ending currency index, zero-based),
+    - `rate` (exchange rate from currency `u` to `v`).
+
+
+
+### Output 
+
+- Prints exactly one line:
+  - `"Arbitrage opportunity detected"` if any negative cycle is found (arbitrage exists).
+  - `"No arbitrage opportunity"` if none is found.
+
+
